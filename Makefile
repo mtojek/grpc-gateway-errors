@@ -1,7 +1,7 @@
 build: go-get generate-grpc-stub
 	go get github.com/mtojek/grpc-gateway-errors/server
 
-run: build
+run-server: build
 	server
 
 go-get:
