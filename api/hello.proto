@@ -1,0 +1,23 @@
+syntax = "proto3";
+package api;
+
+import "google/api/annotations.proto";
+
+service HelloService {
+    // This thing just says Hello to anyone
+    // SayHello('Euler') -> Hello, Euler!
+    rpc SayHello (HelloReq) returns (HelloResp) {
+        option (google.api.http) = {
+            post: "/v1/sayhello"
+            body: "*"
+        };
+    };
+}
+
+message HelloReq {
+    string Name = 1;
+}
+
+message HelloResp {
+    string Result = 1;
+}
