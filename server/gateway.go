@@ -34,7 +34,7 @@ func RunServer(ctx context.Context, grpcPort, httpPort string) error {
 	signal.Notify(c, os.Interrupt)
 	go func() {
 		for range c {
-			// sig is a ^C, handle it
+			os.Exit(1)
 		}
 
 		_, cancel := context.WithTimeout(ctx, 5*time.Second)
