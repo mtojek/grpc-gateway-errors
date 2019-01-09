@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"context"
@@ -17,7 +17,7 @@ func (hs *HelloServer) SayHello(ctx context.Context, req *api.HelloReq) (*api.He
 	return nil, status.Error(codes.Unimplemented, "This is not implemented yet")
 }
 
-func main() {
+func StartServerAndGateway() {
 	ctx := context.Background()
 
 	httpPort := "50001"

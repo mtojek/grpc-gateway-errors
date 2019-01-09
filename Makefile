@@ -1,8 +1,6 @@
 build: go-get generate-grpc-stub
 	go get github.com/mtojek/grpc-gateway-errors/server
-
-run-server: build
-	server
+	go test ./...
 
 go-get:
 	go get -u github.com/golang/protobuf/protoc-gen-go

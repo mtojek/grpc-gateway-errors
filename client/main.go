@@ -1,9 +1,8 @@
-package main
+package client
 
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	spb "google.golang.org/genproto/googleapis/rpc/status"
 	"google.golang.org/grpc/status"
 	"io/ioutil"
@@ -11,7 +10,7 @@ import (
 	"net/http"
 )
 
-func main() {
+func CallServer() error {
 	resp, err := http.Post("http://localhost:50001/v1/sayhello", "application/json",
 		bytes.NewBuffer([]byte(`{"name": "Marcin"}`)))
 	if err != nil {
@@ -35,14 +34,5 @@ func main() {
 		log.Fatal(err)
 	}
 
-	rpcError := status.ErrorProto(&spbs)
-
-	// Validation
-
-	validStatus, ok := status.FromError(rpcError)
-	if !ok {
-		log.Fatal("Can't unmarshal RPC error")
-	}
-
-	fmt.Println(validStatus.Message())
+	return status.ErrorProto(&spbs)
 }
